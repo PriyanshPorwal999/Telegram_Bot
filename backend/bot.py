@@ -8,9 +8,14 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
 
+from dotenv import load_dotenv
+
 from example import example
 
-bot = Bot(token='7581291842:AAGWOb5zHiK-Zg-QxDV4gi3iSqa_h8i_4wA')
+# Load .env file
+load_dotenv()
+
+bot = Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
 
 dp = Dispatcher()
 
