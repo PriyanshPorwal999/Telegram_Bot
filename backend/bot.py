@@ -10,7 +10,10 @@ from aiogram.filters import CommandStart
 
 from dotenv import load_dotenv
 
-from example import example
+# from example import example
+
+from threading import Thread
+from flask import Flask
 
 # Load .env file
 load_dotenv()
@@ -21,7 +24,17 @@ dp = Dispatcher()
 
 openai.api_key = os.environ['OPENAI_API_KEY']
 
-example()
+# example()
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot and Flask are running!"
+
+def run_flask():
+    port = int(os.getenv("PORT", 8080))  # Render assigns PORT dynamically
+    app.run(host='0.0.0.0', port=port)
 
 
 @dp.message(CommandStart(['start', 'help']))
@@ -38,6 +51,9 @@ async def gpt(message: types.Message):
   await message.reply(response['choices'][0]['message']['content'])
 
 async def main():
+  # Start Flask in a separate thread
+  Thread(target=run_flask, daemon=True).start()
+  # Start Telegram bot
   await dp.start_polling(bot)
 
 if __name__ == "__main__":
