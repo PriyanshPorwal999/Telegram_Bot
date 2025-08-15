@@ -24,7 +24,7 @@ This bot is built using:
 ---
 
 ## 📌 Try It Now
-Click here to chat with Telly Bot: [Telly Bot on Telegram](YOUR_BOT_LINK_HERE)
+Click here to chat with Telly Bot: [Telly Bot on Telegram](https://t.me/Pllaayy_bot)
 
 ---
 
